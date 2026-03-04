@@ -12,13 +12,20 @@ type Container struct {
 	userRepo    *repository.UserRepository
 	userService *service.UserService
 	userHandler *handler.UserHandler
+
+	product        *[]model.ProductModel
+	productRepo    *repository.ProductRepository
+	productService *service.ProductService
+	productHandler *handler.ProductHandler
 }
 
 func NewContainer() *Container {
 	var DataUser []model.UserModel
+	var DataProduct []model.ProductModel
 
 	container := Container{
-		user: &DataUser,
+		user:    &DataUser,
+		product: &DataProduct,
 	}
 
 	container.initDependencies()
@@ -27,11 +34,21 @@ func NewContainer() *Container {
 }
 
 func (c *Container) initDependencies() {
+	// USER
 	c.userRepo = repository.NewUserRepository(c.user)
 	c.userService = service.NewUserService(c.userRepo)
 	c.userHandler = handler.NewUserHandler(c.userService)
+
+	// PRODUCT
+	c.productRepo = repository.NewProductRepository(c.product)
+	c.productService = service.NewProductService(c.productRepo)
+	c.productHandler = handler.NewProductHandler(c.productService)
 }
 
 func (c *Container) UserHandler() *handler.UserHandler {
 	return c.userHandler
+}
+
+func (c *Container) ProductHandler() *handler.ProductHandler {
+	return c.productHandler
 }
