@@ -7,4 +7,5 @@ import (
 
 func Init(app *gin.Engine, container *di.Container) {
 	RouterUser(app, container.UserHandler())
+	RouterProduct(app, container.ProductHandler())
 }
