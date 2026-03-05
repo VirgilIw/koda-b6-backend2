@@ -9,7 +9,7 @@ Data masih disimpan sementara di **memory**, sehingga akan hilang jika server di
 # Run
 
 ```bash
-go run main.go
+go run cmd/main.go
 ```
 
 Server berjalan di:
