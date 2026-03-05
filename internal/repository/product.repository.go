@@ -11,12 +11,12 @@ var productData = []model.ProductModel{
 }
 
 type ProductRepository struct {
-	db []model.ProductModel
+	db *[]model.ProductModel
 }
 
-func NewProductRepository() *ProductRepository {
+func NewProductRepository(db *[]model.ProductModel) *ProductRepository {
 	return &ProductRepository{
-		db: productData,
+		db: db,
 	}
 }
 
