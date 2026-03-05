@@ -22,7 +22,7 @@ func NewProductRepository(db *[]model.ProductModel) *ProductRepository {
 
 // Get all products
 func (p *ProductRepository) GetProducts() []model.ProductModel {
-	return p.db
+	return *p.db
 }
 
 // Get product by ID
@@ -37,8 +37,9 @@ func (p *ProductRepository) GetProductById(id int) (model.ProductModel, bool) {
 
 // Create product
 func (p *ProductRepository) CreateProduct(product model.ProductModel) model.ProductModel {
-	product.Id = len(p.db) + 1
-	p.db = append(p.db, product)
+	product.Id = len(*p.db) + 1
+	*p.db = append(*p.db, product)
+
 	return product
 }
 
@@ -59,7 +60,7 @@ func (p *ProductRepository) DeleteProduct(id int) model.ProductModel {
 	var deleted model.ProductModel
 	newData := []model.ProductModel{}
 
-	for _, product := range p.db {
+	for _, product := range *p.db {
 		if product.Id == id {
 			deleted = product
 			continue
@@ -67,6 +68,6 @@ func (p *ProductRepository) DeleteProduct(id int) model.ProductModel {
 		newData = append(newData, product)
 	}
 
-	p.db = newData
+	*p.db = newData
 	return deleted
 }
