@@ -1,19 +1,13 @@
-GET /users HTTP/1.1
-Host: localhost:8888
+### Get All Users
+GET http://localhost:8888/users
 
-###
 
-PATCH /users/email?email=baru@gmail.com HTTP/1.1
-Host: localhost:8888
-Content-Type: application/json
+### Get User By ID
+GET http://localhost:8888/users/1
 
-{
-  "fullname": "gilamb",
-  "email": "test1@gmail.com"
-}
-###
-POST /users HTTP/1.1
-Host: localhost:8888
+
+### Create User
+POST http://localhost:8888/users
 Content-Type: application/json
 
 {
@@ -21,10 +15,48 @@ Content-Type: application/json
   "email": "test1@gmail.com"
 }
 
-###
-GET /users/1 HTTP/1.1
-Host: localhost:8888
 
-###
-DELETE /users/1 HTTP/1.1
-Host: localhost:8888
+### Update User
+PATCH http://localhost:8888/users/email?email=baru@gmail.com
+Content-Type: application/json
+
+{
+  "fullname": "gilamb",
+  "email": "test1@gmail.com"
+}
+
+
+### Delete User
+DELETE http://localhost:8888/users/1
+
+
+### Get All Products
+GET http://localhost:8888/products
+
+
+### Get Product By ID
+GET http://localhost:8888/products/1
+
+
+### Create Product
+POST http://localhost:8888/products
+Content-Type: application/json
+
+{
+  "product_name": "Americano",
+  "rating": 4.7
+}
+
+
+### Update Product
+PATCH http://localhost:8888/products/1
+Content-Type: application/json
+
+{
+  "product_name": "Latte",
+  "rating": 4.8
+}
+
+
+### Delete Product
+DELETE http://localhost:8888/products/1
