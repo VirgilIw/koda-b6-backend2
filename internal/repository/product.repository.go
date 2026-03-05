@@ -27,7 +27,7 @@ func (p *ProductRepository) GetProducts() []model.ProductModel {
 
 // Get product by ID
 func (p *ProductRepository) GetProductById(id int) (model.ProductModel, bool) {
-	for _, product := range p.db {
+	for _, product := range *p.db {
 		if product.Id == id {
 			return product, true
 		}
@@ -45,11 +45,11 @@ func (p *ProductRepository) CreateProduct(product model.ProductModel) model.Prod
 
 // Update product
 func (p *ProductRepository) UpdateProduct(id int, updated model.ProductModel) (model.ProductModel, bool) {
-	for i, product := range p.db {
+	for i, product := range *p.db {
 		if product.Id == id {
-			p.db[i].ProductName = updated.ProductName
-			p.db[i].Rating = updated.Rating
-			return p.db[i], true
+			(*p.db)[i].ProductName = updated.ProductName
+			(*p.db)[i].Rating = updated.Rating
+			return (*p.db)[i], true
 		}
 	}
 	return model.ProductModel{}, false
