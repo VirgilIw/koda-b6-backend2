@@ -14,7 +14,6 @@ type UserHandler struct {
 	service *service.UserService
 }
 
-// test
 func NewUserHandler(service *service.UserService) *UserHandler {
 	return &UserHandler{
 		service: service,
